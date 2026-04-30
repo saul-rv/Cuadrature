@@ -307,18 +307,18 @@ Para ello, se implementa la función en Python (utilizando <code>NumPy</code>):<
 def funcInt(x):
     return x**3/(np.exp(x)-1)
 </code></pre>
-<p>Ahora, se calculan los puntos y los pesos con el valor de <span class="arithmatex">\(N\)</span> a utilizar.
-en este caso 10:</p>
+<p>El valor de la integral, tomando <span class="arithmatex">\(N=10\)</span>, está dada por:</p>
 <pre><code class="language-python">import cuadrature
 
-x, w = cuadrature.gausssxw(10)
-</code></pre>
-<p>Se escalan los pesos y los puntos al intervalo deseado (<span class="arithmatex">\([0,2]\)</span>):</p>
-<pre><code class="language-python">xe, we = cuadrature.gaussab(0, 2, x, w)
-</code></pre>
-<p>Finalmente se evalua la integral:</p>
-<pre><code class="language-python">np.sum(funtInt(xe)*we)
+cuadrature.intGauss(funcInt, 0, 2, 10)
 &gt;&gt;&gt; 1.176
+</code></pre>
+<p>Si se desean obtener los puntos de colocación y los pesos utilizados para la cuadratura
+gaussiana</p>
+<pre><code class="language-python">x, w = cuadrature.gaussxw(10)
+</code></pre>
+<p>Y para escalarlos</p>
+<pre><code class="language-python">xe, we = cuadrature.gaussxwab(0, 2, x, w)
 </code></pre>
 
 
